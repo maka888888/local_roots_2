@@ -1,0 +1,38 @@
+name: local_roots_2
+description: "Local Roots v.2"
+publish_to: 'none'
+
+
+version: 1.0.0+1
+
+
+environment:
+  sdk: ^3.5.3
+
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.8
+  firebase_core: ^3.6.0
+  go_router: ^14.3.0
+  flutter_riverpod: ^2.6.1
+  riverpod_annotation: ^2.6.1
+  flutter_localizations:
+    sdk: flutter
+  intl: any
+
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^4.0.0
+  riverpod_generator: ^2.6.1
+  build_runner: ^2.4.13
+  custom_lint: ^0.6.8
+  riverpod_lint: ^2.6.1
+
+
+flutter:
+  uses-material-design: true
+  generate: true
