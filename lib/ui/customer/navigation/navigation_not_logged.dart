@@ -2,6 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:local_roots_2/constants/screen_sizes.dart';
 
+import '../../common/app_name/app_name_main.dart';
+import '../../common/locale_dropdown/locale_dropdown_main.dart';
+import '../offers/offers_main.dart';
+import '../setup/setup_main.dart';
+
 class CustomerNavigationNotLogged extends StatefulWidget {
   const CustomerNavigationNotLogged({super.key});
 
@@ -14,9 +19,9 @@ class _CustomerNavigationNotLoggedState
     extends State<CustomerNavigationNotLogged> {
   int _currentIndex = 0;
   final List<Widget> _screens = [
+    const CustomerOffers(),
     const Placeholder(),
-    const Placeholder(),
-    const Placeholder(),
+    const CustomerSetupMain(),
   ];
 
   BottomNavigationBar _bottomNavigationBar() {
@@ -78,27 +83,14 @@ class _CustomerNavigationNotLoggedState
   Widget _smallScreenNotLogged() {
     return Scaffold(
       appBar: AppBar(
-
-          // title: const FarmerAppTitle(),
-          //
-          // actions: [
-          //   const LocaleChangeButton(),
-          //   // const SizedBox(
-          //   //   width: 10,
-          //   // ),
-          //   IconButton(
-          //     onPressed: () {
-          //       Navigator.push(
-          //         context,
-          //         MaterialPageRoute(
-          //           builder: (context) => const CustomerSalesLocationsMap(),
-          //         ),
-          //       );
-          //     },
-          //     icon: const Icon(Icons.map_outlined),
-          //   )
-          // ],
+        title: const AppNameMain(),
+        actions: const [
+          SizedBox(
+            width: 100,
+            child: LocaleDropdownMain(),
           ),
+        ],
+      ),
       body: _screens[_currentIndex],
       bottomNavigationBar: _bottomNavigationBar(),
     );
@@ -107,23 +99,14 @@ class _CustomerNavigationNotLoggedState
   Widget _largeScreenNotLogged() {
     return Scaffold(
       appBar: AppBar(
-          //leading: Image.asset('assets/images/logo_512.png'),
-          // title: const FarmerAppTitle(),
-          // actions: [
-          //   const LocaleChangeButton(),
-          //   IconButton(
-          //     onPressed: () {
-          //       Navigator.push(
-          //         context,
-          //         MaterialPageRoute(
-          //           builder: (context) => const CustomerSalesLocationsMap(),
-          //         ),
-          //       );
-          //     },
-          //     icon: const Icon(Icons.map_outlined),
-          //   )
-          // ],
+        title: const AppNameMain(),
+        actions: const [
+          SizedBox(
+            width: 100,
+            child: LocaleDropdownMain(),
           ),
+        ],
+      ),
       body: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

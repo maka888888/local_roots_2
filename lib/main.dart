@@ -4,6 +4,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:local_roots_2/providers/common/go_router/go_router.dart';
+import 'package:local_roots_2/providers/common/locale/locale.dart';
 
 import 'firebase_options.dart';
 
@@ -25,10 +26,12 @@ class MyApp extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final goRouter = ref.watch(refGoRouterProvider);
+    final locale = ref.watch(refLocaleProvider);
 
     return MaterialApp.router(
       title: 'Local Roots',
       routerConfig: goRouter,
+      locale: locale,
       localizationsDelegates: const [
         AppLocalizations.delegate,
         GlobalMaterialLocalizations.delegate,
