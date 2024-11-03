@@ -8,11 +8,14 @@ import 'package:local_roots_2/models/customer_model.dart';
 import 'package:local_roots_2/ui/common/form_control_buttons/next_statefull/next_statefull_main.dart';
 
 import '../../../../../providers/admin/app_users/app_users_services.dart';
+import '../../../../../providers/admin/customer_new/new_customer.dart';
 import '../../../../../providers/customer/new_customer/new_customer.dart';
 import '../../../../common/form_control_buttons/back_stateless/back_stateless_main.dart';
 import '../../../../customer/onboarding/onboarding_main.dart';
+import '../../app_user_widgets/app_user_screen/app_user_main.dart';
 
 class AdminCustomerOnboardingStepRules extends ConsumerStatefulWidget {
+
   final double progress;
   final AppUserModel appUser;
   const AdminCustomerOnboardingStepRules(
@@ -32,7 +35,7 @@ class AdminCustomerOnboardingStepRulesState
   @override
   void initState() {
     super.initState();
-    _customer = ref.read(refCustomerNewProvider(true));
+    _customer = ref.read(refAdminCustomerNewProvider(widget.appUser));
   }
 
   _back() {
@@ -40,7 +43,7 @@ class AdminCustomerOnboardingStepRulesState
       _customer.onboardingStep = CustomerOnboardingStep.address;
     });
     ref
-        .read(refCustomerNewProvider(true).notifier)
+        .read(refAdminCustomerNewProvider(widget.appUser).notifier)
         .updateCustomerNew(_customer);
   }
 
@@ -52,7 +55,11 @@ class AdminCustomerOnboardingStepRulesState
     appUser.customer = _customer;
 
     await ServiceAdminAppUser().updateAppUser(appUser);
-    Navigator.of(context).pop();
+    Navigator.pushReplacement(context,
+      MaterialPageRoute(
+        builder: (context) => AdminAppUserScreen(appUser: appUser),
+      ),
+    );
   }
 
   @override
@@ -93,13 +100,13 @@ class AdminCustomerOnboardingStepRulesState
               initialValue: false,
               title: Text('${AppLocalizations.of(context)!.acceptTerms}*'),
               validator: FormBuilderValidators.compose([
-                FormBuilderValidators.required(),
-                (value) {
-                  if (value == false) {
-                    return AppLocalizations.of(context)!.youMustAccept;
-                  }
-                  return null;
-                },
+                // FormBuilderValidators.required(),
+                // (value) {
+                //   if (value == false) {
+                //     return AppLocalizations.of(context)!.youMustAccept;
+                //   }
+                //   return null;
+                // },
               ]),
             ),
           ],

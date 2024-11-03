@@ -30,7 +30,7 @@ class CustomerOnboardingStepAddressState
   @override
   void initState() {
     super.initState();
-    _customer = ref.read(refCustomerNewProvider(false));
+    _customer = ref.read(refCustomerNewProvider);
   }
 
   _back() {
@@ -38,7 +38,7 @@ class CustomerOnboardingStepAddressState
       _customer.onboardingStep = CustomerOnboardingStep.photo;
     });
     ref
-        .read(refCustomerNewProvider(false).notifier)
+        .read(refCustomerNewProvider.notifier)
         .updateCustomerNew(_customer);
   }
 
@@ -63,7 +63,7 @@ class CustomerOnboardingStepAddressState
     });
 
     ref
-        .read(refCustomerNewProvider(false).notifier)
+        .read(refCustomerNewProvider.notifier)
         .updateCustomerNew(_customer);
   }
 

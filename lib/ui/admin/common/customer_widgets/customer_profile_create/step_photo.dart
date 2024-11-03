@@ -5,6 +5,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:local_roots_2/models/customer_model.dart';
 
+import '../../../../../models/app_user_model.dart';
+import '../../../../../providers/admin/customer_new/new_customer.dart';
 import '../../../../../providers/customer/new_customer/new_customer.dart';
 import '../../../../../utils/photo_handling.dart';
 import '../../../../common/form_control_buttons/back_stateless/back_stateless_main.dart';
@@ -13,8 +15,11 @@ import '../../../../common/photos/photo_oval_large.dart';
 import '../../../../customer/onboarding/onboarding_main.dart';
 
 class AdminCustomerOnboardingStepPhoto extends ConsumerStatefulWidget {
+  final AppUserModel appUser;
   final double progress;
-  const AdminCustomerOnboardingStepPhoto({super.key, required this.progress});
+  const AdminCustomerOnboardingStepPhoto({super.key,
+    required this.appUser,
+    required this.progress});
 
   @override
   AdminCustomerOnboardingStepPhotoState createState() =>
@@ -30,7 +35,7 @@ class AdminCustomerOnboardingStepPhotoState
   @override
   void initState() {
     super.initState();
-    _customer = ref.read(refCustomerNewProvider(true));
+    _customer = ref.read(refAdminCustomerNewProvider(widget.appUser));
   }
 
   Future _save() async {
@@ -38,7 +43,7 @@ class AdminCustomerOnboardingStepPhotoState
       _customer.onboardingStep = CustomerOnboardingStep.address;
     });
     ref
-        .read(refCustomerNewProvider(true).notifier)
+        .read(refAdminCustomerNewProvider(widget.appUser).notifier)
         .updateCustomerNew(_customer);
   }
 
@@ -87,7 +92,7 @@ class AdminCustomerOnboardingStepPhotoState
       _customer.onboardingStep = CustomerOnboardingStep.name;
     });
     ref
-        .read(refCustomerNewProvider(true).notifier)
+        .read(refCustomerNewProvider.notifier)
         .updateCustomerNew(_customer);
   }
 
@@ -119,64 +124,66 @@ class AdminCustomerOnboardingStepPhotoState
           ),
         ),
       ),
-      body: FormBuilder(
-        key: _formKey,
-        child: Column(
-          children: [
-            const SizedBox(height: 40),
-            Center(
-              child: SizedBox(
-                height: 150,
-                width: 150,
-                child: PhotoOvalLarge(photoUrl: _customer.photoLarge),
+      body: SingleChildScrollView(
+        child: FormBuilder(
+          key: _formKey,
+          child: Column(
+            children: [
+              const SizedBox(height: 40),
+              Center(
+                child: SizedBox(
+                  height: 150,
+                  width: 150,
+                  child: PhotoOvalLarge(photoUrl: _customer.photoLarge),
+                ),
               ),
-            ),
-            const SizedBox(height: 40),
-            _isSaving
-                ? const CircularProgressIndicator()
-                : Column(
-                    children: [
-                      SizedBox(
-                        width: 200,
-                        child: OutlinedButton.icon(
-                          onPressed: () async {
-                            await _selectPicture();
-                          },
-                          icon: const Icon(Icons.photo_library_outlined),
-                          label:
-                              Text(AppLocalizations.of(context)!.selectPicture),
+              const SizedBox(height: 40),
+              _isSaving
+                  ? const CircularProgressIndicator()
+                  : Column(
+                      children: [
+                        SizedBox(
+                          width: 200,
+                          child: OutlinedButton.icon(
+                            onPressed: () async {
+                              await _selectPicture();
+                            },
+                            icon: const Icon(Icons.photo_library_outlined),
+                            label:
+                                Text(AppLocalizations.of(context)!.selectPicture),
+                          ),
                         ),
-                      ),
-                      const SizedBox(height: 20),
-                      SizedBox(
-                        width: 200,
-                        child: OutlinedButton.icon(
-                          onPressed: () async {
-                            await _takePicture();
-                          },
-                          icon: const Icon(Icons.camera_alt_outlined),
-                          label:
-                              Text(AppLocalizations.of(context)!.takePicture),
+                        const SizedBox(height: 20),
+                        SizedBox(
+                          width: 200,
+                          child: OutlinedButton.icon(
+                            onPressed: () async {
+                              await _takePicture();
+                            },
+                            icon: const Icon(Icons.camera_alt_outlined),
+                            label:
+                                Text(AppLocalizations.of(context)!.takePicture),
+                          ),
                         ),
-                      ),
-                      const SizedBox(height: 20),
-                      SizedBox(
-                        width: 200,
-                        child: OutlinedButton.icon(
-                          onPressed: _customer.photoLarge == null ||
-                                  _customer.photoLarge == ''
-                              ? null
-                              : () async {
-                                  await _removePicture();
-                                },
-                          icon: const Icon(Icons.highlight_remove),
-                          label: Text(AppLocalizations.of(context)!.remove),
+                        const SizedBox(height: 20),
+                        SizedBox(
+                          width: 200,
+                          child: OutlinedButton.icon(
+                            onPressed: _customer.photoLarge == null ||
+                                    _customer.photoLarge == ''
+                                ? null
+                                : () async {
+                                    await _removePicture();
+                                  },
+                            icon: const Icon(Icons.highlight_remove),
+                            label: Text(AppLocalizations.of(context)!.remove),
+                          ),
                         ),
-                      ),
-                      const SizedBox(height: 20),
-                    ],
-                  ),
-          ],
+                        const SizedBox(height: 20),
+                      ],
+                    ),
+            ],
+          ),
         ),
       ),
     );

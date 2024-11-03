@@ -60,7 +60,7 @@ class AdminAppUserScreen extends StatelessWidget {
                     child:
                         Text(AppLocalizations.of(context)!.createUserProfile),
                     onPressed: () async {
-                      Navigator.push(
+                      Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(
                           builder: (context) {
@@ -95,4 +95,3 @@ class AdminAppUserScreen extends StatelessWidget {
   }
 }
 
-class ServiceAdminAppUsers {}

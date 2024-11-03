@@ -30,7 +30,7 @@ class CustomerOnboardingStepPhotoState
   @override
   void initState() {
     super.initState();
-    _customer = ref.read(refCustomerNewProvider(false));
+    _customer = ref.read(refCustomerNewProvider);
   }
 
   Future _save() async {
@@ -38,7 +38,7 @@ class CustomerOnboardingStepPhotoState
       _customer.onboardingStep = CustomerOnboardingStep.address;
     });
     ref
-        .read(refCustomerNewProvider(false).notifier)
+        .read(refCustomerNewProvider.notifier)
         .updateCustomerNew(_customer);
   }
 
@@ -87,7 +87,7 @@ class CustomerOnboardingStepPhotoState
       _customer.onboardingStep = CustomerOnboardingStep.name;
     });
     ref
-        .read(refCustomerNewProvider(false).notifier)
+        .read(refCustomerNewProvider.notifier)
         .updateCustomerNew(_customer);
   }
 

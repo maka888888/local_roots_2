@@ -5,13 +5,18 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:local_roots_2/models/customer_model.dart';
 
+import '../../../../../models/app_user_model.dart';
+import '../../../../../providers/admin/customer_new/new_customer.dart';
 import '../../../../../providers/customer/new_customer/new_customer.dart';
 import '../../../../common/form_control_buttons/next_stateless/next_stateles_main.dart';
 import '../../../../customer/onboarding/onboarding_main.dart';
 
 class AdminCustomerOnboardingStepName extends ConsumerStatefulWidget {
+  final AppUserModel appUser;
   final double progress;
-  const AdminCustomerOnboardingStepName({super.key, required this.progress});
+  const AdminCustomerOnboardingStepName({super.key,
+    required this.appUser,
+    required this.progress});
 
   @override
   AdminCustomerOnboardingStepNameState createState() =>
@@ -26,7 +31,7 @@ class AdminCustomerOnboardingStepNameState
   @override
   void initState() {
     super.initState();
-    _customer = ref.read(refCustomerNewProvider(true));
+    _customer = ref.read(refAdminCustomerNewProvider(widget.appUser));
   }
 
   _save() {
@@ -34,7 +39,7 @@ class AdminCustomerOnboardingStepNameState
       _customer.onboardingStep = CustomerOnboardingStep.photo;
     });
     ref
-        .read(refCustomerNewProvider(true).notifier)
+        .read(refAdminCustomerNewProvider(widget.appUser).notifier)
         .updateCustomerNew(_customer);
   }
 

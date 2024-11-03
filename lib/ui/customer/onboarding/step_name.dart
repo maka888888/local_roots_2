@@ -26,7 +26,7 @@ class CustomerOnboardingStepNameState
   @override
   void initState() {
     super.initState();
-    _customer = ref.read(refCustomerNewProvider(false));
+    _customer = ref.read(refCustomerNewProvider);
   }
 
   _save() {
@@ -34,7 +34,7 @@ class CustomerOnboardingStepNameState
       _customer.onboardingStep = CustomerOnboardingStep.photo;
     });
     ref
-        .read(refCustomerNewProvider(false).notifier)
+        .read(refCustomerNewProvider.notifier)
         .updateCustomerNew(_customer);
   }
 

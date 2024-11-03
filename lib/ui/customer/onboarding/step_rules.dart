@@ -28,7 +28,7 @@ class CustomerOnboardingStepRulesState
   @override
   void initState() {
     super.initState();
-    _customer = ref.read(refCustomerNewProvider(false));
+    _customer = ref.read(refCustomerNewProvider);
   }
 
   _back() {
@@ -36,7 +36,7 @@ class CustomerOnboardingStepRulesState
       _customer.onboardingStep = CustomerOnboardingStep.address;
     });
     ref
-        .read(refCustomerNewProvider(false).notifier)
+        .read(refCustomerNewProvider.notifier)
         .updateCustomerNew(_customer);
   }
 
@@ -44,7 +44,7 @@ class CustomerOnboardingStepRulesState
     setState(() {
       _isSaving = true;
     });
-    await ref.read(refCustomerNewProvider(false).notifier).saveCustomerNew();
+    await ref.read(refCustomerNewProvider.notifier).saveCustomerNew();
   }
 
   @override

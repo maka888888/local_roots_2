@@ -174,6 +174,6 @@ class _AdminAppUserNewState extends State<AdminAppUserNew> {
         ),
       ),
     );
-    ;
+
   }
 }

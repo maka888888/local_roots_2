@@ -1,24 +1,23 @@
-import 'package:firebase_auth/firebase_auth.dart';
+
+
 import 'package:local_roots_2/models/app_user_model.dart';
-import 'package:local_roots_2/models/customer_model.dart';
-import 'package:local_roots_2/providers/common/app_user/app_user.dart';
-import 'package:local_roots_2/providers/common/auth/auth.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
+import '../../../models/customer_model.dart';
 import '../../../ui/customer/onboarding/onboarding_main.dart';
-import '../../common/app_user/app_user_services.dart';
-
+import '../app_users/app_users_services.dart';
 part 'new_customer.g.dart';
 
+
 @riverpod
-class RefCustomerNew extends _$RefCustomerNew {
+class RefAdminCustomerNew extends _$RefAdminCustomerNew {
   @override
-  CustomerModel build() {
-    User user = ref.watch(refAuthProvider)!;
+  CustomerModel build(AppUserModel appUser) {
+
     return CustomerModel(
-      email:  (user.email ?? ''),
-      name: (user.displayName ?? ''),
-      phone:  (user.phoneNumber ?? ''),
+      email: appUser.email,
+      name: '',
+      phone: '',
       street: '',
       city: '',
       country: 'Lietuva',
@@ -28,7 +27,7 @@ class RefCustomerNew extends _$RefCustomerNew {
       photoLarge: null,
       createdAt: DateTime.now(),
       onboardingStep: CustomerOnboardingStep.name,
-      uid: user.uid,
+      uid: appUser.uid,
     );
   }
 
@@ -36,12 +35,11 @@ class RefCustomerNew extends _$RefCustomerNew {
     state = CustomerModel.copyFrom(customer);
   }
 
-  Future<void> saveCustomerNew() async {
-    AppUserModel appUser = ref.read(refAppUserProvider).value!;
+  Future<void> saveCustomerNew(AppUserModel appUser) async {
     CustomerModel customer = state;
     appUser.isCustomer = true;
     appUser.customer = customer;
 
-    await ServiceAppUser().updateAppUser(appUser);
+    await ServiceAdminAppUser().updateAppUser(appUser);
   }
 }

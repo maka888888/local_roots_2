@@ -13,7 +13,7 @@ class CustomerOnboardingMain extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final customer = ref.watch(refCustomerNewProvider(false));
+    final customer = ref.watch(refCustomerNewProvider);
 
     switch (customer.onboardingStep) {
       case CustomerOnboardingStep.name:
