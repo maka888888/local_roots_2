@@ -63,34 +63,6 @@ Future<String?> uploadPictureSmall(
   return url;
 }
 
-// Future<CustomerModel> uploadCustomerPictureProfile(
-//     BuildContext context, ImageSource source, CustomerModel customer) async {
-//   var uuid = const Uuid();
-//   String fileName = uuid.v1();
-//   final ImagePicker picker = ImagePicker();
-//   String? url;
-//
-//   XFile? image = await picker.pickImage(
-//     source: source,
-//     imageQuality: 80,
-//     maxWidth: 100,
-//     maxHeight: 100,
-//   );
-//
-//   if (image != null) {
-//     await FirebaseStorage.instance.ref('images/$fileName.jpg').putData(
-//           await image.readAsBytes(),
-//           SettableMetadata(contentType: 'image/jpg'),
-//         );
-//
-//     url = await FirebaseStorage.instance
-//         .ref('images/$fileName.jpg')
-//         .getDownloadURL();
-//   }
-//
-//   return customer;
-// }
-
 Future<CustomerModel> uploadCustomerPictureProfile(
     ImageSource source, CustomerModel customer) async {
   const uuid = Uuid();
@@ -145,4 +117,31 @@ Future<void> deletePhoto(BuildContext context, String url) async {
   } catch (e) {
     debugPrint(e.toString());
   }
+}
+
+Future<String?> uploadCertificatePhoto(
+    BuildContext context, ImageSource source) async {
+  var uuid = const Uuid();
+  String fileName = uuid.v1();
+  final ImagePicker picker = ImagePicker();
+  String? url;
+
+  XFile? image = await picker.pickImage(
+    source: source,
+    maxWidth: 1024,
+    maxHeight: 1024,
+  );
+
+  if (image != null) {
+    await FirebaseStorage.instance.ref('images/$fileName.jpg').putData(
+          await image.readAsBytes(),
+          SettableMetadata(contentType: 'image/jpg'),
+        );
+
+    url = await FirebaseStorage.instance
+        .ref('images/$fileName.jpg')
+        .getDownloadURL();
+  }
+
+  return url;
 }

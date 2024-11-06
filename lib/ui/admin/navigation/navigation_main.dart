@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:local_roots_2/constants/screen_sizes.dart';
 
-import '../../common/app_name/app_name_main.dart';
-import '../../common/locale_dropdown/locale_dropdown_main.dart';
+import '../approvals/approvals_main.dart';
 import '../setup/setup_main.dart';
 import '../users/user_new.dart';
 import '../users/users_main.dart';
@@ -19,7 +18,7 @@ class _AdminNavigationState extends State<AdminNavigation> {
   int _currentIndex = 0;
   final List<Widget> _screens = [
     const AdminUsersMain(),
-    const Placeholder(),
+    const AdminApprovalsMain(),
     const Placeholder(),
     const AdminSetupMain(),
   ];
@@ -110,15 +109,6 @@ class _AdminNavigationState extends State<AdminNavigation> {
 
   Widget _smallScreenNotLogged() {
     return Scaffold(
-      appBar: AppBar(
-        title: const AppNameMain(),
-        actions: const [
-          SizedBox(
-            width: 100,
-            child: LocaleDropdownMain(),
-          ),
-        ],
-      ),
       body: _screens[_currentIndex],
       bottomNavigationBar: _bottomNavigationBar(),
       floatingActionButton: _floatingActionButton(),
@@ -127,15 +117,6 @@ class _AdminNavigationState extends State<AdminNavigation> {
 
   Widget _largeScreenNotLogged() {
     return Scaffold(
-      appBar: AppBar(
-        title: const AppNameMain(),
-        actions: const [
-          SizedBox(
-            width: 100,
-            child: LocaleDropdownMain(),
-          ),
-        ],
-      ),
       body: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
