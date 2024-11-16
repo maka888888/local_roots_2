@@ -34,4 +34,19 @@ class ProfileChanger {
       }
     });
   }
+
+  Future<void> changeProfileToFarmer(
+      BuildContext context, WidgetRef ref) async {
+    await ref
+        .read(refProfileProvider.notifier)
+        .saveProfileTo(ProfileMode.farmer)
+        .then((value) {
+      if (context.mounted) {
+        while (context.canPop() == true) {
+          context.pop();
+        }
+        context.pushReplacement('/');
+      }
+    });
+  }
 }

@@ -10,4 +10,18 @@ class ServicesAdminFarmerCandidates {
         .map((doc) => FarmerCandidateModel.fromFire(doc))
         .toList());
   }
+
+  Future<FarmerCandidateModel?> getFarmerCandidate(String email) async {
+    final snapshot = await fireFarmerCandidates
+        .where(
+          'email',
+          isEqualTo: email,
+        )
+        .get();
+    if (snapshot.docs.isNotEmpty) {
+      return FarmerCandidateModel.fromFire(snapshot.docs.first);
+    } else {
+      return null;
+    }
+  }
 }

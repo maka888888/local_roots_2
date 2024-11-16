@@ -7,6 +7,8 @@ import 'package:local_roots_2/models/app_user_model.dart';
 import '../../../../../providers/admin/app_users/app_users_services.dart';
 import '../../customer_widgets/customer_profile_create/onboarding_main.dart';
 import '../../customer_widgets/customer_tile/customer_tile_main.dart';
+import '../../farmer_widgets/farmer_card_long/farmer_card_long_main.dart';
+import '../../farmer_widgets/farmer_onboarding/farmer_onboarding_main.dart';
 
 class AdminAppUserScreen extends StatelessWidget {
   final AppUserModel appUser;
@@ -88,10 +90,27 @@ class AdminAppUserScreen extends StatelessWidget {
                 },
               ),
             ),
+            appUser.farmer == null
+                ? OutlinedButton(
+                    child:
+                        Text(AppLocalizations.of(context)!.createFarmerProfile),
+                    onPressed: () async {
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) {
+                            return AdminFarmerOnboarding(
+                              appUser: appUser,
+                            );
+                          },
+                        ),
+                      );
+                    })
+                : AdminFarmerCardLong(farmer: appUser.farmer!),
+            const Divider(),
           ],
         ),
       ),
     );
   }
 }
-

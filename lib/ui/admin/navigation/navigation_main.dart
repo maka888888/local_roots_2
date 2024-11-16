@@ -1,147 +1,33 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:local_roots_2/constants/screen_sizes.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:local_roots_2/ui/common/loading_screen/loading_screen_main.dart';
+import 'package:local_roots_2/utils/profiles_switch.dart';
 
-import '../approvals/approvals_main.dart';
-import '../setup/setup_main.dart';
-import '../users/user_new.dart';
-import '../users/users_main.dart';
+import '../../../providers/common/app_user/app_user.dart';
+import 'navigation.dart';
 
-class AdminNavigation extends StatefulWidget {
-  const AdminNavigation({super.key});
+class AdminNavigationMain extends ConsumerWidget {
+  const AdminNavigationMain({super.key});
 
   @override
-  State<AdminNavigation> createState() => _AdminNavigationState();
-}
+  Widget build(BuildContext context, WidgetRef ref) {
+    final appUser = ref.watch(refAppUserProvider);
 
-class _AdminNavigationState extends State<AdminNavigation> {
-  int _currentIndex = 0;
-  final List<Widget> _screens = [
-    const AdminUsersMain(),
-    const AdminApprovalsMain(),
-    const Placeholder(),
-    const AdminSetupMain(),
-  ];
-
-  BottomNavigationBar _bottomNavigationBar() {
-    return BottomNavigationBar(
-      currentIndex: _currentIndex,
-      type: BottomNavigationBarType.fixed,
-      selectedItemColor: Theme.of(context).colorScheme.primary,
-      onTap: (index) {
-        setState(() {
-          _currentIndex = index;
-        });
-      },
-      items: [
-        BottomNavigationBarItem(
-          icon: const Icon(Icons.person_outlined),
-          label: AppLocalizations.of(context)!.users,
-        ),
-        BottomNavigationBarItem(
-          icon: const Icon(Icons.approval_outlined),
-          label: AppLocalizations.of(context)!.approvals,
-        ),
-        BottomNavigationBarItem(
-          icon: const Icon(Icons.shopping_basket_outlined),
-          label: AppLocalizations.of(context)!.orders,
-        ),
-        BottomNavigationBarItem(
-          icon: const Icon(Icons.settings_outlined),
-          label: AppLocalizations.of(context)!.setup,
-        ),
-      ],
-    );
-  }
-
-  Widget _navigationRailNotLogged() {
-    return SizedBox(
-      height: MediaQuery.of(context).size.height,
-      child: NavigationRail(
-        selectedIndex: _currentIndex,
-        onDestinationSelected: (index) {
-          setState(() {
-            _currentIndex = index;
+    return appUser.when(
+      data: (appUser) {
+        if (appUser == null || !appUser.isAdmin) {
+          WidgetsBinding.instance.addPostFrameCallback((_) {
+            ProfileChanger().changeProfileToCustomer(context, ref);
           });
-        },
-        labelType: NavigationRailLabelType.all,
-        destinations: [
-          NavigationRailDestination(
-            icon: const Icon(Icons.person_outlined),
-            label: Text(AppLocalizations.of(context)!.users),
-          ),
-          NavigationRailDestination(
-            icon: const Icon(Icons.approval_outlined),
-            label: Text(AppLocalizations.of(context)!.approvals),
-          ),
-          NavigationRailDestination(
-            icon: const Icon(Icons.shopping_basket_outlined),
-            label: Text(AppLocalizations.of(context)!.orders),
-          ),
-          NavigationRailDestination(
-            icon: const Icon(Icons.settings_outlined),
-            label: Text(AppLocalizations.of(context)!.setup),
-          ),
-        ],
+          return const LoadingScreenMain();
+        } else {
+          return const AdminNavigation();
+        }
+      },
+      loading: () => const LoadingScreenMain(),
+      error: (error, stackTrace) => Center(
+        child: Text('Error: $error'),
       ),
     );
-  }
-
-  Widget? _floatingActionButton() {
-    switch (_currentIndex) {
-      case 0:
-        return FloatingActionButton(
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => const AdminAppUserNew(),
-              ),
-            );
-          },
-          child: const Icon(Icons.add),
-        );
-
-      default:
-        return null;
-    }
-  }
-
-  Widget _smallScreenNotLogged() {
-    return Scaffold(
-      body: _screens[_currentIndex],
-      bottomNavigationBar: _bottomNavigationBar(),
-      floatingActionButton: _floatingActionButton(),
-    );
-  }
-
-  Widget _largeScreenNotLogged() {
-    return Scaffold(
-      body: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          SizedBox(
-            width: 135,
-            child: Padding(
-              padding: const EdgeInsets.only(top: 20.0),
-              child: _navigationRailNotLogged(),
-            ),
-          ),
-          Expanded(child: _screens[_currentIndex]),
-        ],
-      ),
-      floatingActionButton: _floatingActionButton(),
-    );
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return LayoutBuilder(builder: (context, constraints) {
-      if (constraints.maxWidth < ScreenSizes.smallScreen) {
-        return _smallScreenNotLogged();
-      } else {
-        return _largeScreenNotLogged();
-      }
-    });
   }
 }

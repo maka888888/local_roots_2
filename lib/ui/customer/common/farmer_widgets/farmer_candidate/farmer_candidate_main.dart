@@ -42,6 +42,5 @@ class CustomerFarmerCandidateMain extends ConsumerWidget {
       default:
         return const Placeholder();
     }
-    ;
   }
 }

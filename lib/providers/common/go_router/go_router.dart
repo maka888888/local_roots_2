@@ -1,13 +1,12 @@
 import 'package:go_router/go_router.dart';
 import 'package:local_roots_2/constants/profile_modes.dart';
-import 'package:local_roots_2/models/app_user_model.dart';
 import 'package:local_roots_2/ui/common/loading_screen/loading_screen_main.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../ui/admin/navigation/navigation_main.dart';
 import '../../../ui/common/error_screen/error_screen.dart';
 import '../../../ui/customer/navigation/navigation_main.dart';
-import '../app_user/app_user.dart';
+import '../../../ui/farmer/navigation/farmer_navigation_main.dart';
 import '../load/load_get.dart';
 import '../profile/profile.dart';
 
@@ -29,17 +28,29 @@ class RefGoRouter extends _$RefGoRouter {
 
             return loader.when(
               data: (data) {
-                final profile = ref.watch(refProfileProvider);
+                final ProfileMode profile = ref.watch(refProfileProvider);
 
                 if (profile == ProfileMode.admin) {
-                  AppUserModel? appUser = ref.watch(refAppUserProvider).value;
-
-                  if (appUser != null && appUser.isAdmin) {
-                    return '/admin';
-                  }
-
-                  return null;
+                  return '/admin';
+                } else if (profile == ProfileMode.farmer) {
+                  return '/farmer';
                 }
+
+                // AppUserModel? appUser = ref.watch(refAppUserProvider).value;
+                //
+                // print('appUser: $appUser');
+                //
+                // if (appUser != null) {
+                //   if (profile == ProfileMode.admin && appUser.isAdmin) {
+                //     return '/admin';
+                //   } else if (profile == ProfileMode.farmer &&
+                //       appUser.isFarmer) {
+                //     return '/farmer';
+                //   } else if (appUser.isFarmer && !appUser.isCustomer) {
+                //     return '/farmer';
+                //   }
+                // }
+
                 return null;
               },
               error: (err, stack) {
@@ -60,7 +71,13 @@ class RefGoRouter extends _$RefGoRouter {
         GoRoute(
           path: '/admin',
           builder: (context, state) {
-            return const AdminNavigation();
+            return const AdminNavigationMain();
+          },
+        ),
+        GoRoute(
+          path: '/farmer',
+          builder: (context, state) {
+            return const FarmerNavigationMain();
           },
         ),
         GoRoute(

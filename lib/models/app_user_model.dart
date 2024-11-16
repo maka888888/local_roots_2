@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:local_roots_2/models/farmer_model.dart';
 
 import 'customer_model.dart';
 
@@ -8,6 +9,7 @@ class AppUserModel {
   bool isCustomer;
   CustomerModel? customer;
   bool isFarmer;
+  FarmerModel? farmer;
   bool isAdmin;
   bool isDistributor;
   DateTime lastLogin;
@@ -21,6 +23,7 @@ class AppUserModel {
     required this.isCustomer,
     this.customer,
     required this.isFarmer,
+    this.farmer,
     required this.isAdmin,
     required this.isDistributor,
     required this.lastLogin,
@@ -40,6 +43,8 @@ class AppUserModel {
           ? CustomerModel.fromFire(data['customer'])
           : null,
       isFarmer: data['isFarmer'],
+      farmer:
+          data['farmer'] != null ? FarmerModel.fromFire(data['farmer']) : null,
       isAdmin: data['isAdmin'],
       isDistributor: data['isDistributor'],
       lastLogin: DateTime.parse(data['lastLogin']),
@@ -55,6 +60,7 @@ class AppUserModel {
       'isCustomer': isCustomer,
       'customer': customer?.toJson(),
       'isFarmer': isFarmer,
+      'farmer': farmer?.toJson(),
       'isAdmin': isAdmin,
       'isDistributor': isDistributor,
       'lastLogin': lastLogin.toIso8601String(),

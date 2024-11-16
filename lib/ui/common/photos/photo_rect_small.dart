@@ -22,20 +22,16 @@ class PhotoRectSmall extends StatelessWidget {
     } else {
       return ClipRRect(
         borderRadius: BorderRadius.circular(5),
-        child: ClipOval(
-          child: CachedNetworkImage(
-            fit: BoxFit.cover,
-            imageUrl: imageUrl!,
-            progressIndicatorBuilder: (context, url, downloadProgress) =>
-                SizedBox(
-              width: 40,
-              height: 40,
-              child:
-                  CircularProgressIndicator(value: downloadProgress.progress),
-            ),
-            errorWidget: (context, url, error) =>
-                const Icon(Icons.error_outline),
+        child: CachedNetworkImage(
+          fit: BoxFit.cover,
+          imageUrl: imageUrl!,
+          progressIndicatorBuilder: (context, url, downloadProgress) =>
+              SizedBox(
+            width: 40,
+            height: 40,
+            child: CircularProgressIndicator(value: downloadProgress.progress),
           ),
+          errorWidget: (context, url, error) => const Icon(Icons.error_outline),
         ),
       );
     }
