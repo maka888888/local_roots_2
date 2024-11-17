@@ -140,6 +140,8 @@
                     "offer": "Pasiūlymas",
                         "unitSpecification": "Specifikacija",
                             "offerIsNotApprovedByAdmin": "Pasūlymas dar nepatvirtintas administratoriaus",
+                                "offerIsApproved": "Pasiūlymas patvirtintas",
+                                    "farmerIsApproved": "Ūkininkas patvirtintas",
 
 
 

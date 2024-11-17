@@ -23,4 +23,21 @@ class ServicesAdminOffer {
   Future<void> updateOffer(OfferModel offer) async {
     await fireOffers.doc(offer.id).update(offer.toJson());
   }
+
+  Stream<List<OfferModel>> streamFarmersOffers(String appUserId) {
+    return fireOffers
+        .where('farmerShort.appUserId', isEqualTo: appUserId)
+        .snapshots()
+        .map(
+          (snapshot) =>
+              snapshot.docs.map((doc) => OfferModel.fromFire(doc)).toList(),
+        );
+  }
+
+  Future<QuerySnapshot> getFarmersOffers(String appUserId) async {
+    print('Getting farmers offers for: $appUserId');
+    return fireOffers
+        .where('farmerShort.appUserId', isEqualTo: appUserId)
+        .get();
+  }
 }

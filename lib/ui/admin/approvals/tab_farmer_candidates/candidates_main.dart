@@ -15,8 +15,8 @@ class AdminApprovalsTabFarmerCandidates extends ConsumerWidget {
       data: (farmerCandidates) {
         return ListView.separated(
           itemCount: farmerCandidates.length,
-          shrinkWrap: true,
-          physics: const NeverScrollableScrollPhysics(),
+          // shrinkWrap: true,
+          // physics: const NeverScrollableScrollPhysics(),
           itemBuilder: (context, index) {
             return AdminApprovalsTabFarmerCandidateCard(
               farmerCandidate: farmerCandidates[index],

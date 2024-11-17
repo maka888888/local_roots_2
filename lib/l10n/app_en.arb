@@ -140,6 +140,8 @@
     "offer": "Offer",
     "unitSpecification": "Unit specification",
     "offerIsNotApprovedByAdmin": "Offer is not approved by administrator",
+    "offerIsApproved": "Offer is approved",
+    "farmerIsApproved": "Farmer is approved",
 
 
 

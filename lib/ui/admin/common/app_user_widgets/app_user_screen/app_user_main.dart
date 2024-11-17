@@ -106,7 +106,7 @@ class AdminAppUserScreen extends StatelessWidget {
                         ),
                       );
                     })
-                : AdminFarmerCardLong(farmer: appUser.farmer!),
+                : AdminFarmerCardLong(appUser: appUser),
             const Divider(),
           ],
         ),

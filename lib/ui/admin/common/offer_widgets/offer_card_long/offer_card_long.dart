@@ -4,6 +4,8 @@ import 'package:local_roots_2/models/category_model.dart';
 import 'package:local_roots_2/models/offer_model.dart';
 import 'package:local_roots_2/ui/common/photos/photo_rect_small.dart';
 
+import '../offer_screen/offer_main.dart';
+
 class AdminOfferCardLong extends StatelessWidget {
   final OfferModel offer;
   const AdminOfferCardLong({super.key, required this.offer});
@@ -37,12 +39,12 @@ class AdminOfferCardLong extends StatelessWidget {
       subtitle: Text(categoryName),
       trailing: const Icon(Icons.arrow_forward_ios),
       onTap: () {
-        // Navigator.push(
-        //   context,
-        //   MaterialPageRoute(
-        //     builder: (context) => FarmerOffer(offer: offer),
-        //   ),
-        // );
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => AdminOffer(offer: offer),
+          ),
+        );
       },
     );
   }
