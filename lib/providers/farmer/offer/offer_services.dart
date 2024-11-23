@@ -9,9 +9,12 @@ class ServicesFarmerOffer {
     await fireOffers.add(offer.toJson());
   }
 
-  Stream<List<OfferModel>> streamOffers() {
-    return fireOffers.snapshots().map((snapshot) =>
-        snapshot.docs.map((doc) => OfferModel.fromFire(doc)).toList());
+  Stream<List<OfferModel>> streamOffers(String farmerId) {
+    return fireOffers
+        .where('farmerShort.appUserId', isEqualTo: farmerId)
+        .snapshots()
+        .map((snapshot) =>
+            snapshot.docs.map((doc) => OfferModel.fromFire(doc)).toList());
   }
 
   Future<void> updateOffer(OfferModel offer) async {

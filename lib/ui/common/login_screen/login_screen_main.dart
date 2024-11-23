@@ -23,7 +23,7 @@ class LoginScreenMain extends StatelessWidget {
               buttonType: ButtonType.mail,
               buttonSize: ButtonSize.medium,
               btnText: AppLocalizations.of(context)!.signInWithEmail,
-              //width: 250,
+              width: 250,
               onPressed: () {
                 Navigator.push(
                     context,
@@ -37,7 +37,7 @@ class LoginScreenMain extends StatelessWidget {
               buttonType: ButtonType.google,
               buttonSize: ButtonSize.medium,
               btnText: AppLocalizations.of(context)!.signInWithGoogle,
-              //width: 250,
+              width: 250,
               onPressed: () async {
                 await ServicesAuth().signInWithGoogle().then((value) {
                   Navigator.pop(context);
