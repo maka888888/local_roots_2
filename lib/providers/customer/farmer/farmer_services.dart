@@ -40,4 +40,17 @@ class ServiceCustomerFarmer {
       return null;
     }
   }
+
+  Future<List<FarmerModel>> getFarmersByCategory(String category) async {
+    QuerySnapshot docs = await fireAppUsers
+        .where(
+          'farmer.categories',
+          arrayContains: category,
+        )
+        .get();
+    return docs.docs.map((e) {
+      AppUserModel appUser = AppUserModel.fromFire(e);
+      return appUser.farmer!;
+    }).toList();
+  }
 }

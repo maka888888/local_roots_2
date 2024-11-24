@@ -170,6 +170,11 @@
     "yes": "Yes",
     "no": "No",
     "paymentOptions": "Payment options",
+    "personalDeliveryToCustomer": "Personal delivery to customer",
+    "deliveryDepo": "Delivery method DEPO",
+    "recommended": "Recommended",
+      "newFarmers": "New farmers",
+      "myFavoriteFarmers": "My favorite farmers",
 
 
 

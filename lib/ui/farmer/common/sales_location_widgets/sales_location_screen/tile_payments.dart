@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:local_roots_2/models/sales_location_model.dart';
 
+import 'edit_screen/edit_payments.dart';
+
 class FarmerSalesLocationTilePayments extends StatelessWidget {
   final SalesLocationModel salesLocation;
   const FarmerSalesLocationTilePayments(
@@ -48,6 +50,16 @@ class FarmerSalesLocationTilePayments extends StatelessWidget {
           )
         ],
       ),
+      trailing: const Icon(Icons.edit_outlined),
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) =>
+                FarmerSalesLocationEditPayments(salesLocation: salesLocation),
+          ),
+        );
+      },
     );
   }
 }

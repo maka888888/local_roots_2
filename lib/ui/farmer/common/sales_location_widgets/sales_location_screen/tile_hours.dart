@@ -3,6 +3,8 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:jiffy/jiffy.dart';
 import 'package:local_roots_2/models/sales_location_model.dart';
 
+import 'edit_screen/edit_hours.dart';
+
 class FarmerSalesLocationTileHours extends StatelessWidget {
   final SalesLocationModel salesLocation;
   const FarmerSalesLocationTileHours({super.key, required this.salesLocation});
@@ -198,6 +200,16 @@ class FarmerSalesLocationTileHours extends StatelessWidget {
           ),
         ],
       ),
+      trailing: const Icon(Icons.edit_outlined),
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) =>
+                FarmerSalesLocationEditName(salesLocation: salesLocation),
+          ),
+        );
+      },
     );
   }
 }

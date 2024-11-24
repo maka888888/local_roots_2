@@ -1,5 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:local_roots_2/ui/common/photos/photo_rect_large.dart';
+import 'package:shimmer/shimmer.dart';
 
 class PhotoRectSmall extends StatelessWidget {
   final String? imageUrl;
@@ -26,10 +28,15 @@ class PhotoRectSmall extends StatelessWidget {
           fit: BoxFit.cover,
           imageUrl: imageUrl!,
           progressIndicatorBuilder: (context, url, downloadProgress) =>
-              SizedBox(
-            width: 40,
-            height: 40,
-            child: CircularProgressIndicator(value: downloadProgress.progress),
+              Shimmer.fromColors(
+            baseColor: Theme.of(context).colorScheme.surface,
+            highlightColor: adjustColorBrightness(
+                Theme.of(context).colorScheme.surface, 0.6),
+            child: Container(
+              height: double.infinity,
+              width: double.infinity,
+              color: Theme.of(context).colorScheme.surfaceContainer,
+            ),
           ),
           errorWidget: (context, url, error) => const Icon(Icons.error_outline),
         ),

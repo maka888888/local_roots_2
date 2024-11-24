@@ -170,6 +170,12 @@
                            "yes": "Taip",
                            "no": "Ne",
                                "paymentOptions": "Mokėjimo būdai",
+         "personalDeliveryToCustomer": "Asmeninis pristatymas pirkėjui",
+            "deliveryDepo": "Pristatymo būdas DEPO",
+                "recommended": "Rekomenduojama",
+                "newFarmers": "Nauji ūkiai",
+                      "myFavoriteFarmers": "Mano mėgstami ūkininkai",
+
 
 
 
