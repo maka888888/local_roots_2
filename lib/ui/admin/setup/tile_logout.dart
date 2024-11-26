@@ -16,15 +16,15 @@ class AdminSetupTileLogout extends ConsumerWidget {
     if (user == null) {
       return const SizedBox();
     } else {
-      return Card(
-        child: ListTile(
-            leading: const Icon(Icons.logout),
-            title: Text(AppLocalizations.of(context)!.logout),
-            subtitle: Text(
-                '${AppLocalizations.of(context)!.youAreLoggedWithEmail}: ${user.email!}'),
-            onTap: () async {
-              await ServicesAuth().signOut();
-            }),
+      return ListTile(
+        leading: const Icon(Icons.logout),
+        title: Text(AppLocalizations.of(context)!.logout),
+        subtitle: Text(
+            '${AppLocalizations.of(context)!.youAreLoggedWithEmail}: ${user.email!}'),
+        onTap: () async {
+          await ServicesAuth().signOut();
+        },
+        trailing: const Icon(Icons.arrow_forward_ios),
       );
     }
   }

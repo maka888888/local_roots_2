@@ -54,15 +54,15 @@ class CustomerSetupTileDeleteCustomer extends ConsumerWidget {
     if (appUser == null) {
       return const SizedBox();
     } else {
-      return Card(
-        child: ListTile(
-            leading: const Icon(Icons.person_remove_outlined),
-            title: Text(AppLocalizations.of(context)!.deleteCustomerProfile),
-            subtitle: Text(AppLocalizations.of(context)!
-                .youMayDeleteAllDataRelatedWithYou),
-            onTap: () async {
-              await delete();
-            }),
+      return ListTile(
+        leading: const Icon(Icons.person_remove_outlined),
+        title: Text(AppLocalizations.of(context)!.deleteCustomerProfile),
+        subtitle: Text(
+            AppLocalizations.of(context)!.youMayDeleteAllDataRelatedWithYou),
+        onTap: () async {
+          await delete();
+        },
+        trailing: const Icon(Icons.arrow_forward_ios),
       );
     }
   }

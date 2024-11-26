@@ -15,50 +15,63 @@ class LoginScreenMain extends StatelessWidget {
       appBar: AppBar(
         title: Text(AppLocalizations.of(context)!.login),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            SignInButton(
-              buttonType: ButtonType.mail,
-              buttonSize: ButtonSize.medium,
-              btnText: AppLocalizations.of(context)!.signInWithEmail,
-              width: 250,
-              onPressed: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const CustomerLoginEmailCreate(),
-                    ));
-              },
+      body: ListView(
+        children: [
+          const SizedBox(height: 100),
+          Image.asset(
+            'assets/images/logo_512_no_back.png',
+            height: 150,
+          ),
+          const SizedBox(height: 40),
+          Align(
+            alignment: Alignment.center,
+            child: Text(
+              AppLocalizations.of(context)!.appName,
+              style: Theme.of(context).textTheme.headlineMedium,
             ),
-            const SizedBox(height: 20),
-            SignInButton(
-              buttonType: ButtonType.google,
-              buttonSize: ButtonSize.medium,
-              btnText: AppLocalizations.of(context)!.signInWithGoogle,
-              width: 250,
-              onPressed: () async {
-                await ServicesAuth().signInWithGoogle().then((value) {
-                  Navigator.pop(context);
-                  // if (value != null) {
-                  //   Navigator.pop(context);
-                  // }
-                });
-              },
+          ),
+          const SizedBox(height: 20),
+          Align(
+            alignment: Alignment.center,
+            child: Text(
+              AppLocalizations.of(context)!.loginOrCreateAccount,
+              style: Theme.of(context).textTheme.titleMedium,
             ),
-            // const SizedBox(height: 20),
-            // SignInButton(
-            //   buttonType: ButtonType.facebook,
-            //   buttonSize: ButtonSize.medium,
-            //   btnText: AppLocalizations.of(context)!.signInWithGoogle,
-            //   //width: 250,
-            //   onPressed: () {
-            //     print('click');
-            //   },
-            // ),
-          ],
-        ),
+          ),
+          const SizedBox(height: 20),
+          Column(
+            children: [
+              SignInButton(
+                buttonType: ButtonType.mail,
+                buttonSize: ButtonSize.medium,
+                btnText: AppLocalizations.of(context)!.signInWithEmail,
+                width: 250,
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const CustomerLoginEmailCreate(),
+                      ));
+                },
+              ),
+              const SizedBox(height: 20),
+              SignInButton(
+                buttonType: ButtonType.google,
+                buttonSize: ButtonSize.medium,
+                btnText: AppLocalizations.of(context)!.signInWithGoogle,
+                width: 250,
+                onPressed: () async {
+                  await ServicesAuth().signInWithGoogle().then((value) {
+                    Navigator.pop(context);
+                    // if (value != null) {
+                    //   Navigator.pop(context);
+                    // }
+                  });
+                },
+              ),
+            ],
+          ),
+        ],
       ),
     );
   }

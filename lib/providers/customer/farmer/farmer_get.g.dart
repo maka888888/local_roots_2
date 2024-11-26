@@ -7,7 +7,7 @@ part of 'farmer_get.dart';
 // **************************************************************************
 
 String _$refCustomerFarmerGetHash() =>
-    r'102b0a5a4396bc97b52c19c08f5373d1f8d9549c';
+    r'a7b4b3be3e32edb19fe5061e2c73a5aaa35a7534';
 
 /// Copied from Dart SDK
 class _SystemHash {

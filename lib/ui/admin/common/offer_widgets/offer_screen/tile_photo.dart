@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:local_roots_2/models/offer_model.dart';
+import 'package:local_roots_2/ui/admin/common/offer_widgets/offer_screen/screens/edit_main_photo.dart';
 import 'package:local_roots_2/ui/common/photos/photo_rect_large.dart';
 
 class AdminOfferTilePhoto extends StatelessWidget {
@@ -16,14 +17,14 @@ class AdminOfferTilePhoto extends StatelessWidget {
           const SizedBox(height: 20),
           OutlinedButton(
             onPressed: () {
-              // Navigator.push(
-              //   context,
-              //   MaterialPageRoute(
-              //     builder: (context) => FarmerFarmMyFarmEditMainPhoto(
-              //       appUser: appUser,
-              //     ),
-              //   ),
-              // );
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => AdminOfferEditPhoto(
+                    offer: offer,
+                  ),
+                ),
+              );
             },
             child: Text(AppLocalizations.of(context)!.edit),
           ),

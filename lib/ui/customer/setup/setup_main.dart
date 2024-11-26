@@ -10,12 +10,16 @@ class CustomerSetupMain extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Column(
-      children: [
+    return ListView(
+      children: const [
         CustomerSetupTileLogout(),
+        Divider(),
         CustomerSetupTileDeleteCustomer(),
+        Divider(),
         CustomerSetupTileCustomerProfile(),
+        Divider(),
         CustomerSetupTileAdmin(),
+        Divider(),
         CustomerSetupTileFarmer(),
       ],
     );

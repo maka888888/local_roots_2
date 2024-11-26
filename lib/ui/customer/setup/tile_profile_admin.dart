@@ -15,15 +15,15 @@ class CustomerSetupTileAdmin extends ConsumerWidget {
     if (appUserModel == null || !appUserModel.isAdmin) {
       return const SizedBox();
     } else {
-      return Card(
-        child: ListTile(
-            leading: const Icon(Icons.admin_panel_settings_outlined),
-            title: Text(AppLocalizations.of(context)!.administrator),
-            subtitle: Text(AppLocalizations.of(context)!.switchToAdminPanel),
-            onTap: () async {
-              //await ServicesAuth().signOut();
-              await ProfileChanger().changeProfileToAdmin(context, ref);
-            }),
+      return ListTile(
+        leading: const Icon(Icons.admin_panel_settings_outlined),
+        title: Text(AppLocalizations.of(context)!.administrator),
+        subtitle: Text(AppLocalizations.of(context)!.switchToAdminPanel),
+        onTap: () async {
+          //await ServicesAuth().signOut();
+          await ProfileChanger().changeProfileToAdmin(context, ref);
+        },
+        trailing: const Icon(Icons.arrow_forward_ios),
       );
     }
   }

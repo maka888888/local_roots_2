@@ -82,7 +82,7 @@ Future<CustomerModel> uploadCustomerPictureProfile(
       await _uploadImage(imageBytes, 'customers/$fileName-large.jpg', 800, 800);
 
   final String smallImageUrl =
-      await _uploadImage(imageBytes, 'customers/$fileName-small.jpg', 50, 50);
+      await _uploadImage(imageBytes, 'customers/$fileName-small.jpg', 100, 100);
 
   return customer.copyWith(
       photoLarge: largeImageUrl, photoSmall: smallImageUrl);
@@ -105,7 +105,7 @@ Future<FarmerModel> uploadFarmerPictureProfile(
       await _uploadImage(imageBytes, 'farmers/$fileName-large.jpg', 800, 800);
 
   final String smallImageUrl =
-      await _uploadImage(imageBytes, 'farmers/$fileName-small.jpg', 50, 50);
+      await _uploadImage(imageBytes, 'farmers/$fileName-small.jpg', 150, 150);
 
   return farmer.copyWith(largePhoto: largeImageUrl, smallPhoto: smallImageUrl);
 }
@@ -127,7 +127,7 @@ Future<OfferModel> uploadOfferPhoto(
       await _uploadImage(imageBytes, 'offers/$fileName-large.jpg', 800, 800);
 
   final String smallImageUrl =
-      await _uploadImage(imageBytes, 'offers/$fileName-small.jpg', 50, 50);
+      await _uploadImage(imageBytes, 'offers/$fileName-small.jpg', 100, 100);
 
   return offer.copyWith(
     mainPhotoLarge: largeImageUrl,
@@ -175,21 +175,6 @@ Future<String> _uploadImage(
   // Return the download URL
   return await ref.getDownloadURL();
 }
-
-// Future<String> _uploadImage(
-//     Uint8List imageBytes, String path, int maxWidth, int maxHeight) async {
-//   final img.Image? originalImage = img.decodeImage(imageBytes);
-//   final img.Image resizedImage =
-//       img.copyResize(originalImage!, width: maxWidth, height: maxHeight);
-//
-//   final Uint8List resizedBytes =
-//       Uint8List.fromList(img.encodeJpg(resizedImage));
-//
-//   final ref = FirebaseStorage.instance.ref(path);
-//   await ref.putData(resizedBytes, SettableMetadata(contentType: 'image/jpg'));
-//
-//   return await ref.getDownloadURL();
-// }
 
 Future<void> deletePhoto(BuildContext context, String url) async {
   Reference ref = FirebaseStorage.instance.refFromURL(url);

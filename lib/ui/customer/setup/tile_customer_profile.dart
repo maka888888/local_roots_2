@@ -16,22 +16,21 @@ class CustomerSetupTileCustomerProfile extends ConsumerWidget {
     if (appUser == null || appUser.customer == null) {
       return const SizedBox();
     } else {
-      return Card(
-        child: ListTile(
-          leading: const Icon(Icons.person_outlined),
-          title: Text(AppLocalizations.of(context)!.customerProfile),
-          subtitle: Text(AppLocalizations.of(context)!.editCustomerProfile),
-          onTap: () async {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) {
-                  return const CustomerSetupCustomerProfile();
-                },
-              ),
-            );
-          },
-        ),
+      return ListTile(
+        leading: const Icon(Icons.person_outlined),
+        title: Text(AppLocalizations.of(context)!.customerProfile),
+        subtitle: Text(AppLocalizations.of(context)!.editCustomerProfile),
+        onTap: () async {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) {
+                return const CustomerSetupCustomerProfile();
+              },
+            ),
+          );
+        },
+        trailing: const Icon(Icons.arrow_forward_ios),
       );
     }
   }

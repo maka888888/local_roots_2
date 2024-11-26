@@ -22,7 +22,7 @@ class FarmerSetupTileCustomer extends ConsumerWidget {
             title: Text(AppLocalizations.of(context)!.customer),
             subtitle: Text(AppLocalizations.of(context)!.switchToCustomerMode),
             onTap: () async {
-              await ProfileChanger().changeProfileToAdmin(context, ref);
+              await ProfileChanger().changeProfileToCustomer(context, ref);
             },
             trailing: const Icon(Icons.arrow_forward_ios),
           ),

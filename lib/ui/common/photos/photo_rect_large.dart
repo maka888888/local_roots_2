@@ -27,17 +27,10 @@ class PhotoRectLarge extends StatelessWidget {
       return ClipRRect(
         borderRadius: BorderRadius.circular(5),
         child: CachedNetworkImage(
-          fit: BoxFit.cover,
+          //fit: BoxFit.cover,
           imageUrl: imageUrl!,
           height: height,
-          // progressIndicatorBuilder: (context, url, downloadProgress) => Center(
-          //   child: SizedBox(
-          //     width: 40,
-          //     height: 40,
-          //     child:
-          //         CircularProgressIndicator(value: downloadProgress.progress),
-          //   ),
-          // ),
+
           progressIndicatorBuilder: (context, url, downloadProgress) =>
               Shimmer.fromColors(
             baseColor: Theme.of(context).colorScheme.surface,

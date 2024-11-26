@@ -12,20 +12,17 @@ class CustomerSetupTileFarmer extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     AppUserModel? appUserModel = ref.watch(refAppUserProvider).valueOrNull;
 
-    // print('appUserModel: ${appUserModel!.farmer}');
-
     if (appUserModel == null || !appUserModel.isFarmer) {
       return const SizedBox();
     } else {
-      return Card(
-        child: ListTile(
-            leading: const Icon(Icons.nature_people_outlined),
-            title: Text(AppLocalizations.of(context)!.farmerProfile),
-            subtitle: Text(AppLocalizations.of(context)!.switchToFarmerProfile),
-            onTap: () async {
-              //await ServicesAuth().signOut();
-              await ProfileChanger().changeProfileToFarmer(context, ref);
-            }),
+      return ListTile(
+        leading: const Icon(Icons.nature_people_outlined),
+        title: Text(AppLocalizations.of(context)!.farmerProfile),
+        subtitle: Text(AppLocalizations.of(context)!.switchToFarmerProfile),
+        onTap: () async {
+          await ProfileChanger().changeProfileToFarmer(context, ref);
+        },
+        trailing: const Icon(Icons.arrow_forward_ios),
       );
     }
   }
