@@ -1,13 +1,13 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'offer_get.dart';
+part of 'view_offer_post.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$refCustomerOfferGetHash() =>
-    r'c2cb84a3d32e8d3cf33b9ebbe971f531019f73ed';
+String _$refCustomerOfferViewPostHash() =>
+    r'6512c79b78a969f682637d0e7a394f011fc9b333';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -30,36 +30,36 @@ class _SystemHash {
   }
 }
 
-abstract class _$RefCustomerOfferGet
-    extends BuildlessAutoDisposeAsyncNotifier<OfferModel?> {
+abstract class _$RefCustomerOfferViewPost
+    extends BuildlessAutoDisposeAsyncNotifier<void> {
   late final String offerId;
 
-  FutureOr<OfferModel?> build(
+  FutureOr<void> build(
     String offerId,
   );
 }
 
-/// See also [RefCustomerOfferGet].
-@ProviderFor(RefCustomerOfferGet)
-const refCustomerOfferGetProvider = RefCustomerOfferGetFamily();
+/// See also [RefCustomerOfferViewPost].
+@ProviderFor(RefCustomerOfferViewPost)
+const refCustomerOfferViewPostProvider = RefCustomerOfferViewPostFamily();
 
-/// See also [RefCustomerOfferGet].
-class RefCustomerOfferGetFamily extends Family<AsyncValue<OfferModel?>> {
-  /// See also [RefCustomerOfferGet].
-  const RefCustomerOfferGetFamily();
+/// See also [RefCustomerOfferViewPost].
+class RefCustomerOfferViewPostFamily extends Family<AsyncValue<void>> {
+  /// See also [RefCustomerOfferViewPost].
+  const RefCustomerOfferViewPostFamily();
 
-  /// See also [RefCustomerOfferGet].
-  RefCustomerOfferGetProvider call(
+  /// See also [RefCustomerOfferViewPost].
+  RefCustomerOfferViewPostProvider call(
     String offerId,
   ) {
-    return RefCustomerOfferGetProvider(
+    return RefCustomerOfferViewPostProvider(
       offerId,
     );
   }
 
   @override
-  RefCustomerOfferGetProvider getProviderOverride(
-    covariant RefCustomerOfferGetProvider provider,
+  RefCustomerOfferViewPostProvider getProviderOverride(
+    covariant RefCustomerOfferViewPostProvider provider,
   ) {
     return call(
       provider.offerId,
@@ -78,30 +78,31 @@ class RefCustomerOfferGetFamily extends Family<AsyncValue<OfferModel?>> {
       _allTransitiveDependencies;
 
   @override
-  String? get name => r'refCustomerOfferGetProvider';
+  String? get name => r'refCustomerOfferViewPostProvider';
 }
 
-/// See also [RefCustomerOfferGet].
-class RefCustomerOfferGetProvider extends AutoDisposeAsyncNotifierProviderImpl<
-    RefCustomerOfferGet, OfferModel?> {
-  /// See also [RefCustomerOfferGet].
-  RefCustomerOfferGetProvider(
+/// See also [RefCustomerOfferViewPost].
+class RefCustomerOfferViewPostProvider
+    extends AutoDisposeAsyncNotifierProviderImpl<RefCustomerOfferViewPost,
+        void> {
+  /// See also [RefCustomerOfferViewPost].
+  RefCustomerOfferViewPostProvider(
     String offerId,
   ) : this._internal(
-          () => RefCustomerOfferGet()..offerId = offerId,
-          from: refCustomerOfferGetProvider,
-          name: r'refCustomerOfferGetProvider',
+          () => RefCustomerOfferViewPost()..offerId = offerId,
+          from: refCustomerOfferViewPostProvider,
+          name: r'refCustomerOfferViewPostProvider',
           debugGetCreateSourceHash:
               const bool.fromEnvironment('dart.vm.product')
                   ? null
-                  : _$refCustomerOfferGetHash,
-          dependencies: RefCustomerOfferGetFamily._dependencies,
+                  : _$refCustomerOfferViewPostHash,
+          dependencies: RefCustomerOfferViewPostFamily._dependencies,
           allTransitiveDependencies:
-              RefCustomerOfferGetFamily._allTransitiveDependencies,
+              RefCustomerOfferViewPostFamily._allTransitiveDependencies,
           offerId: offerId,
         );
 
-  RefCustomerOfferGetProvider._internal(
+  RefCustomerOfferViewPostProvider._internal(
     super._createNotifier, {
     required super.name,
     required super.dependencies,
@@ -114,8 +115,8 @@ class RefCustomerOfferGetProvider extends AutoDisposeAsyncNotifierProviderImpl<
   final String offerId;
 
   @override
-  FutureOr<OfferModel?> runNotifierBuild(
-    covariant RefCustomerOfferGet notifier,
+  FutureOr<void> runNotifierBuild(
+    covariant RefCustomerOfferViewPost notifier,
   ) {
     return notifier.build(
       offerId,
@@ -123,10 +124,10 @@ class RefCustomerOfferGetProvider extends AutoDisposeAsyncNotifierProviderImpl<
   }
 
   @override
-  Override overrideWith(RefCustomerOfferGet Function() create) {
+  Override overrideWith(RefCustomerOfferViewPost Function() create) {
     return ProviderOverride(
       origin: this,
-      override: RefCustomerOfferGetProvider._internal(
+      override: RefCustomerOfferViewPostProvider._internal(
         () => create()..offerId = offerId,
         from: from,
         name: null,
@@ -139,14 +140,15 @@ class RefCustomerOfferGetProvider extends AutoDisposeAsyncNotifierProviderImpl<
   }
 
   @override
-  AutoDisposeAsyncNotifierProviderElement<RefCustomerOfferGet, OfferModel?>
+  AutoDisposeAsyncNotifierProviderElement<RefCustomerOfferViewPost, void>
       createElement() {
-    return _RefCustomerOfferGetProviderElement(this);
+    return _RefCustomerOfferViewPostProviderElement(this);
   }
 
   @override
   bool operator ==(Object other) {
-    return other is RefCustomerOfferGetProvider && other.offerId == offerId;
+    return other is RefCustomerOfferViewPostProvider &&
+        other.offerId == offerId;
   }
 
   @override
@@ -160,19 +162,18 @@ class RefCustomerOfferGetProvider extends AutoDisposeAsyncNotifierProviderImpl<
 
 @Deprecated('Will be removed in 3.0. Use Ref instead')
 // ignore: unused_element
-mixin RefCustomerOfferGetRef
-    on AutoDisposeAsyncNotifierProviderRef<OfferModel?> {
+mixin RefCustomerOfferViewPostRef on AutoDisposeAsyncNotifierProviderRef<void> {
   /// The parameter `offerId` of this provider.
   String get offerId;
 }
 
-class _RefCustomerOfferGetProviderElement
-    extends AutoDisposeAsyncNotifierProviderElement<RefCustomerOfferGet,
-        OfferModel?> with RefCustomerOfferGetRef {
-  _RefCustomerOfferGetProviderElement(super.provider);
+class _RefCustomerOfferViewPostProviderElement
+    extends AutoDisposeAsyncNotifierProviderElement<RefCustomerOfferViewPost,
+        void> with RefCustomerOfferViewPostRef {
+  _RefCustomerOfferViewPostProviderElement(super.provider);
 
   @override
-  String get offerId => (origin as RefCustomerOfferGetProvider).offerId;
+  String get offerId => (origin as RefCustomerOfferViewPostProvider).offerId;
 }
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

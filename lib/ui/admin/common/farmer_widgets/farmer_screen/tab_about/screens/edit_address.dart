@@ -62,7 +62,7 @@ class AdminFarmMyFarmEditAddressState
 
     if (context.mounted) {
       Navigator.pushReplacement(
-        context,
+        contextNav,
         MaterialPageRoute(
           builder: (context) => AdminFarmer(appUser: appUser),
         ),
