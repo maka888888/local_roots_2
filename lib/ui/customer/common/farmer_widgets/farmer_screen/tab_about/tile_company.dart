@@ -15,12 +15,15 @@ class CustomerFarmerTileCompany extends StatelessWidget {
     }
 
     return ListTile(
-      title: Text(AppLocalizations.of(context)!.companyID),
+      title: Text(AppLocalizations.of(context)!.requisites),
       subtitle: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(farmer.companyId),
-          vatId == null ? const SizedBox.shrink() : Text(vatId),
+          Text(
+              '${AppLocalizations.of(context)!.companyID}: ${farmer.companyId}'),
+          vatId == null
+              ? const SizedBox.shrink()
+              : Text('${AppLocalizations.of(context)!.vatID}: vatId'),
         ],
       ),
     );
