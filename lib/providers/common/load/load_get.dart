@@ -11,15 +11,10 @@ part 'load_get.g.dart';
 class RefLoad extends _$RefLoad {
   @override
   Future<void> build() async {
-    // await Future.wait([
-    //   ref.read(refLocaleProvider.notifier).getSavedLocale(),
-    //   ref.read(refAuthProvider.future),
-    // ]);
     await ref.read(refLocaleProvider.notifier).getSavedLocale();
     await ref.read(refProfileProvider.notifier).getProfileMode();
 
     await ref.read(refAuthStreamProvider.future);
-    //await ref.read(refAuthProvider.future);
     await ref.read(refAppUserProvider.future);
   }
 }

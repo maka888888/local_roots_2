@@ -4,6 +4,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:intl/intl.dart';
 import 'package:local_roots_2/models/app_user_model.dart';
 import 'package:local_roots_2/models/farmer_candidate_model.dart';
 import 'package:local_roots_2/models/farmer_model.dart';
@@ -46,7 +47,8 @@ class AdminFarmerOnboardingState extends ConsumerState<AdminFarmerOnboarding> {
       farmPhotos: [],
       categories: [],
       certificatesPhotos: [],
-      yearsExperience: 0,
+      inBusinessSince:
+          DateTime(DateTime.now().year - 5, DateTime.now().month, 1),
       description: '',
       isApproved: false,
       isActive: true,
@@ -107,7 +109,8 @@ class AdminFarmerOnboardingState extends ConsumerState<AdminFarmerOnboarding> {
             _farmer.street = _farmerCandidate!.street;
             _farmer.city = _farmerCandidate!.city;
             _farmer.country = _farmerCandidate!.country;
-            _farmer.yearsExperience = _farmerCandidate!.yearsExperience;
+            _farmer.inBusinessSince = DateTime(DateTime.now().year - 5,
+                DateTime.now().month, 1); //_farmerCandidate!.yearsExperience;
             _farmer.description = _farmerCandidate!.description;
             _farmer.categories = _farmerCandidate!.categories;
             _farmer.certificatesPhotos = _farmerCandidate!.certificatesPhotos;
@@ -117,8 +120,8 @@ class AdminFarmerOnboardingState extends ConsumerState<AdminFarmerOnboarding> {
           _formKey.currentState!.fields['street']!.didChange(_farmer.street);
           _formKey.currentState!.fields['city']!.didChange(_farmer.city);
           _formKey.currentState!.fields['country']!.didChange(_farmer.country);
-          _formKey.currentState!.fields['yearsExperience']!
-              .didChange(_farmer.yearsExperience.toString());
+          _formKey.currentState!.fields['inBusinessSince']!
+              .didChange(_farmer.inBusinessSince);
           _formKey.currentState!.fields['description']!
               .didChange(_farmer.description);
         }
@@ -280,19 +283,33 @@ class AdminFarmerOnboardingState extends ConsumerState<AdminFarmerOnboarding> {
                 validator: FormBuilderValidators.required(),
               ),
               const SizedBox(height: 20),
-              FormBuilderTextField(
-                name: 'yearsExperience',
-                initialValue: _farmer.yearsExperience.toString(),
+              // FormBuilderTextField(
+              //   name: 'yearsExperience',
+              //   initialValue: _farmer.yearsExperience.toString(),
+              //   decoration: InputDecoration(
+              //     labelText:
+              //         AppLocalizations.of(context)!.howManyYearsDoingBusiness,
+              //   ),
+              //   onChanged: (value) {
+              //     setState(() {
+              //       _farmer.yearsExperience = int.parse(value!);
+              //     });
+              //   },
+              //   keyboardType: TextInputType.number,
+              // ),
+              FormBuilderDateTimePicker(
+                name: 'inBusinessSince',
+                initialValue: _farmer.inBusinessSince,
+                inputType: InputType.date,
+                format: DateFormat('yyyy-MM-dd'),
                 decoration: InputDecoration(
-                  labelText:
-                      AppLocalizations.of(context)!.howManyYearsDoingBusiness,
+                  labelText: AppLocalizations.of(context)!.inBusinessSince,
                 ),
                 onChanged: (value) {
                   setState(() {
-                    _farmer.yearsExperience = int.parse(value!);
+                    _farmer.inBusinessSince = value!;
                   });
                 },
-                keyboardType: TextInputType.number,
               ),
               const SizedBox(height: 20),
               FormBuilderTextField(

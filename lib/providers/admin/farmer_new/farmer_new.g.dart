@@ -6,7 +6,7 @@ part of 'farmer_new.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$refAdminFarmerNewHash() => r'82846c8ea2ac4d5319c7601579ee628b118dd42a';
+String _$refAdminFarmerNewHash() => r'd822b83068d4d434f8aedea9b42f6876e36d8b13';
 
 /// See also [RefAdminFarmerNew].
 @ProviderFor(RefAdminFarmerNew)

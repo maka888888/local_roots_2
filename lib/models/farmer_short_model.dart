@@ -1,3 +1,5 @@
+import 'farmer_model.dart';
+
 class FarmerShortModel {
   String appUserId;
   String name;
@@ -66,5 +68,20 @@ class FarmerShortModel {
       'isApproved': isApproved,
       'isActive': isActive,
     };
+  }
+
+  factory FarmerShortModel.fromFarmer(FarmerModel farmer) {
+    return FarmerShortModel(
+      appUserId: farmer.appUserId,
+      name: farmer.name,
+      email: farmer.email,
+      phone: farmer.phone,
+      street: farmer.street,
+      city: farmer.city,
+      country: farmer.country,
+      smallPhoto: farmer.smallPhoto,
+      isApproved: farmer.isApproved,
+      isActive: farmer.isActive,
+    );
   }
 }

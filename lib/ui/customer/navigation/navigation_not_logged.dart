@@ -4,8 +4,9 @@ import 'package:local_roots_2/constants/screen_sizes.dart';
 
 import '../../common/app_name/app_name_main.dart';
 import '../../common/locale_dropdown/locale_dropdown_main.dart';
+import '../about/about_main.dart';
 import '../offers/offers_main.dart';
-import '../setup/setup_main.dart';
+import '../search/search_main.dart';
 
 class CustomerNavigationNotLogged extends StatefulWidget {
   const CustomerNavigationNotLogged({super.key});
@@ -20,8 +21,8 @@ class _CustomerNavigationNotLoggedState
   int _currentIndex = 0;
   final List<Widget> _screens = [
     const CustomerOffers(),
-    const Placeholder(),
-    const CustomerSetupMain(),
+    const CustomerSearch(),
+    const CustomerAbout(),
   ];
 
   BottomNavigationBar _bottomNavigationBar() {
@@ -117,7 +118,15 @@ class _CustomerNavigationNotLoggedState
               child: _navigationRailNotLogged(),
             ),
           ),
-          Expanded(child: _screens[_currentIndex]),
+          Expanded(
+            child: Center(
+              child: ConstrainedBox(
+                constraints:
+                    const BoxConstraints(maxWidth: ScreenSizes.smallScreen),
+                child: Center(child: _screens[_currentIndex]),
+              ),
+            ),
+          ),
         ],
       ),
     );

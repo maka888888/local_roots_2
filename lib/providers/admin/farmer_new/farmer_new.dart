@@ -10,6 +10,7 @@ part 'farmer_new.g.dart';
 class RefAdminFarmerNew extends _$RefAdminFarmerNew {
   @override
   FarmerModel build() {
+    DateTime now = DateTime.now();
     return FarmerModel(
       appUserId: '',
       name: '',
@@ -26,7 +27,7 @@ class RefAdminFarmerNew extends _$RefAdminFarmerNew {
       farmPhotos: [],
       categories: [],
       certificatesPhotos: [],
-      yearsExperience: 0,
+      inBusinessSince: DateTime(now.year - 5, now.month, 1),
       description: '',
       isApproved: false,
       isActive: true,

@@ -12,6 +12,7 @@ part 'farmer_onboarding.g.dart';
 class RefFarmerOnboarding extends _$RefFarmerOnboarding {
   @override
   FarmerModel build() {
+    DateTime now = DateTime.now();
     return FarmerModel(
       appUserId: '',
       name: '',
@@ -30,7 +31,7 @@ class RefFarmerOnboarding extends _$RefFarmerOnboarding {
       farmPhotos: [],
       categories: [],
       certificatesPhotos: [],
-      yearsExperience: 0,
+      inBusinessSince: DateTime(now.year - 5, now.month, 1),
       description: '',
       isApproved: false,
       isActive: false,

@@ -7,7 +7,7 @@ part of 'farmer_onboarding.dart';
 // **************************************************************************
 
 String _$refFarmerOnboardingHash() =>
-    r'b141c325288ad94cd93941a888b2c42072225e93';
+    r'0288400552ae1f7ecb56a06cb89f1bee91abc064';
 
 /// See also [RefFarmerOnboarding].
 @ProviderFor(RefFarmerOnboarding)

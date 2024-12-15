@@ -6,6 +6,7 @@ import 'package:local_roots_2/ui/common/loading_screen/loading_screen_main.dart'
 import 'package:local_roots_2/ui/customer/common/farmer_widgets/farmer_screen/tab_about/tab_about_main.dart';
 import 'package:local_roots_2/ui/customer/common/farmer_widgets/farmer_screen/tab_offers/tab_offers_main.dart';
 
+import '../../../../../constants/screen_sizes.dart';
 import 'farmer_like_button.dart';
 
 class CustomerFarmer extends ConsumerWidget {
@@ -33,17 +34,25 @@ class CustomerFarmer extends ConsumerWidget {
                 title: Text(data.name),
                 actions: [CustomerFarmerLikeButton(farmer: data)],
                 bottom: TabBar(
+                  tabAlignment: TabAlignment.center,
+                  isScrollable: true,
                   tabs: [
                     Tab(text: AppLocalizations.of(context)!.offers),
                     Tab(text: AppLocalizations.of(context)!.about),
                   ],
                 ),
               ),
-              body: TabBarView(
-                children: [
-                  CustomerFarmerTabOffers(farmerId: farmerId),
-                  CustomerFarmerTabAbout(farmer: data),
-                ],
+              body: Center(
+                child: ConstrainedBox(
+                  constraints:
+                      const BoxConstraints(maxWidth: ScreenSizes.smallScreen),
+                  child: TabBarView(
+                    children: [
+                      CustomerFarmerTabOffers(farmerId: farmerId),
+                      CustomerFarmerTabAbout(farmer: data),
+                    ],
+                  ),
+                ),
               ),
             ),
           );

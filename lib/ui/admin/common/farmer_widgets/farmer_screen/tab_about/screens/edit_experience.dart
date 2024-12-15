@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:form_builder_validators/form_builder_validators.dart';
+import 'package:intl/intl.dart';
 import 'package:local_roots_2/models/app_user_model.dart';
 import 'package:local_roots_2/models/farmer_model.dart';
 import 'package:local_roots_2/ui/common/form_control_buttons/save_statefull/save_statefull_button.dart';
@@ -78,20 +80,37 @@ class AdminFarmMyFarmEditExperienceState
         child: Column(
           children: [
             const SizedBox(height: 40),
-            FormBuilderTextField(
-              name: 'name',
-              initialValue: _farmer.yearsExperience.toString(),
-              keyboardType: TextInputType.number,
+            FormBuilderDateTimePicker(
+              name: 'inBusinessSince',
+              initialValue: _farmer.inBusinessSince,
+              inputType: InputType.date,
+              format: DateFormat('yyyy-MM-dd'),
               decoration: InputDecoration(
-                labelText:
-                    '${AppLocalizations.of(context)!.howManyYearsDoingBusiness}',
+                labelText: '${AppLocalizations.of(context)!.inBusinessSince} *',
               ),
               onChanged: (value) {
                 setState(() {
-                  _farmer.yearsExperience = int.tryParse(value!) ?? 0;
+                  _farmer.inBusinessSince = value!;
                 });
               },
+              validator: FormBuilderValidators.compose([
+                FormBuilderValidators.required(),
+              ]),
             ),
+            // FormBuilderTextField(
+            //   name: 'name',
+            //   initialValue: _farmer.yearsExperience.toString(),
+            //   keyboardType: TextInputType.number,
+            //   decoration: InputDecoration(
+            //     labelText:
+            //         '${AppLocalizations.of(context)!.howManyYearsDoingBusiness}',
+            //   ),
+            //   onChanged: (value) {
+            //     setState(() {
+            //       _farmer.yearsExperience = int.tryParse(value!) ?? 0;
+            //     });
+            //   },
+            // ),
           ],
         ),
       ),

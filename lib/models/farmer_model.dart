@@ -18,7 +18,7 @@ class FarmerModel {
   List<String> farmPhotos;
   List<String> categories;
   List<String> certificatesPhotos;
-  int yearsExperience;
+  DateTime inBusinessSince;
   String description;
   bool isApproved;
   bool isActive;
@@ -46,7 +46,7 @@ class FarmerModel {
     required this.farmPhotos,
     required this.categories,
     required this.certificatesPhotos,
-    required this.yearsExperience,
+    required this.inBusinessSince,
     required this.description,
     required this.isApproved,
     required this.isActive,
@@ -76,7 +76,9 @@ class FarmerModel {
       farmPhotos: List<String>.from(data['farmPhotos']),
       categories: List<String>.from(data['categories']),
       certificatesPhotos: List<String>.from(data['certificatesPhotos']),
-      yearsExperience: data['yearsExperience'],
+      inBusinessSince: data['inBusinessSince'] == null
+          ? DateTime.now()
+          : DateTime.parse(data['inBusinessSince']),
       description: data['description'],
       isApproved: data['isApproved'],
       isActive: data['isActive'],
@@ -106,7 +108,7 @@ class FarmerModel {
       farmPhotos: farmer.farmPhotos,
       categories: farmer.categories,
       certificatesPhotos: farmer.certificatesPhotos,
-      yearsExperience: farmer.yearsExperience,
+      inBusinessSince: farmer.inBusinessSince,
       description: farmer.description,
       isApproved: farmer.isApproved,
       isActive: farmer.isActive,
@@ -136,7 +138,7 @@ class FarmerModel {
     List<String>? farmPhotos,
     List<String>? categories,
     List<String>? certificatesPhotos,
-    int? yearsExperience,
+    DateTime? inBusinessSince,
     String? description,
     bool? isApproved,
     bool? isActive,
@@ -164,7 +166,7 @@ class FarmerModel {
       farmPhotos: farmPhotos ?? this.farmPhotos,
       categories: categories ?? this.categories,
       certificatesPhotos: certificatesPhotos ?? this.certificatesPhotos,
-      yearsExperience: yearsExperience ?? this.yearsExperience,
+      inBusinessSince: inBusinessSince ?? this.inBusinessSince,
       description: description ?? this.description,
       isApproved: isApproved ?? this.isApproved,
       isActive: isActive ?? this.isActive,
@@ -195,7 +197,7 @@ class FarmerModel {
       'farmPhotos': farmPhotos,
       'categories': categories,
       'certificatesPhotos': certificatesPhotos,
-      'yearsExperience': yearsExperience,
+      'inBusinessSince': inBusinessSince.toIso8601String(),
       'description': description,
       'isApproved': isApproved,
       'isActive': isActive,

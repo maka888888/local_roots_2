@@ -50,7 +50,8 @@ class FarmerOnboardingStepNameState
       farmPhotos: [],
       categories: [],
       certificatesPhotos: [],
-      yearsExperience: 3,
+      inBusinessSince:
+          DateTime(DateTime.now().year - 5, DateTime.now().month, 1),
       description: '',
       isApproved: false,
       isActive: true,
@@ -105,7 +106,7 @@ class FarmerOnboardingStepNameState
         _farmer.longitude = candidate.longitude;
         _farmer.categories = candidate.categories;
         _farmer.certificatesPhotos = candidate.certificatesPhotos;
-        _farmer.yearsExperience = candidate.yearsExperience;
+        //_farmer.inBusinessSince = candidate.yearsExperience;
         _farmer.description = candidate.description;
       });
     }

@@ -21,6 +21,7 @@ class CustomerFarmerTabOffers extends ConsumerWidget {
         } else {
           return ListView.separated(
             itemCount: data.length,
+            shrinkWrap: true,
             itemBuilder: (context, index) {
               return CustomerOfferCardLong(offer: data[index]);
             },

@@ -8,6 +8,8 @@ import 'package:local_roots_2/ui/customer/common/offer_widgets/offer_screen/tile
 import 'package:local_roots_2/ui/customer/common/offer_widgets/offer_screen/tile_photo.dart';
 import 'package:local_roots_2/ui/customer/common/offer_widgets/offer_screen/tile_price.dart';
 
+import 'order_button_ref.dart';
+
 class CustomerOfferLoaded extends ConsumerWidget {
   final OfferModel offer;
   const CustomerOfferLoaded({super.key, required this.offer});
@@ -32,7 +34,7 @@ class CustomerOfferLoaded extends ConsumerWidget {
 
           const Divider(),
           CustomerOfferTilePrice(offer: offer),
-          const SizedBox(height: 20),
+          const SizedBox(height: 50),
           // FarmerOfferTileName(offer: offer),
           // const Divider(),
           // FarmerOfferTileDescription(offer: offer),
@@ -43,6 +45,8 @@ class CustomerOfferLoaded extends ConsumerWidget {
           // const Divider(),
         ],
       ),
+      floatingActionButton: CustomerOfferOrderRefButton(offer: offer),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
 }

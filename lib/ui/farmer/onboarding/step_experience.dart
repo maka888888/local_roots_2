@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:intl/intl.dart';
 import 'package:local_roots_2/models/farmer_model.dart';
 import 'package:local_roots_2/providers/farmer/onboarding/farmer_onboarding.dart';
 import 'package:local_roots_2/ui/common/form_control_buttons/next_statefull/next_statefull_main.dart';
@@ -76,22 +77,36 @@ class FarmerOnboardingStepExperienceState
         child: Column(
           children: [
             const SizedBox(height: 40),
-            FormBuilderSlider(
-              name: 'yearsExperience',
-              initialValue: _farmer.yearsExperience.toDouble(),
-              min: 0,
-              max: 15,
-              divisions: 15,
+            FormBuilderDateTimePicker(
+              name: 'inBusinessSince',
+              initialValue: _farmer.inBusinessSince,
+              inputType: InputType.date,
+              format: DateFormat('yyyy-MM-dd'),
+              decoration: InputDecoration(
+                labelText: AppLocalizations.of(context)!.inBusinessSince,
+              ),
               onChanged: (value) {
                 setState(() {
-                  _farmer.yearsExperience = value?.toInt() ?? 0;
+                  _farmer.inBusinessSince = value!;
                 });
               },
-              decoration: InputDecoration(
-                labelText:
-                    AppLocalizations.of(context)!.howManyYearsDoingBusiness,
-              ),
             ),
+            // FormBuilderSlider(
+            //   name: 'yearsExperience',
+            //   initialValue: _farmer.yearsExperience.toDouble(),
+            //   min: 0,
+            //   max: 15,
+            //   divisions: 15,
+            //   onChanged: (value) {
+            //     setState(() {
+            //       _farmer.yearsExperience = value?.toInt() ?? 0;
+            //     });
+            //   },
+            //   decoration: InputDecoration(
+            //     labelText:
+            //         AppLocalizations.of(context)!.howManyYearsDoingBusiness,
+            //   ),
+            // ),
           ],
         ),
       ),

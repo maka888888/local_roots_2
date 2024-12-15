@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:jiffy/jiffy.dart';
 import 'package:local_roots_2/models/farmer_model.dart';
 
 class CustomerFarmerTileExperience extends StatelessWidget {
@@ -12,8 +13,7 @@ class CustomerFarmerTileExperience extends StatelessWidget {
       children: [
         ListTile(
           title: Text(AppLocalizations.of(context)!.experience),
-          subtitle: Text(
-              '${farmer.yearsExperience} ${AppLocalizations.of(context)!.years}'),
+          subtitle: Text(Jiffy.parseFromDateTime(farmer.inBusinessSince).yM),
         )
       ],
     );
